@@ -1,0 +1,25 @@
+name: Quant Swarm Loop
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install yfinance pandas numpy scipy plotly matplotlib
+      - run: pip install FinMLKit vectorbt stable-baselines3 ray quantstats alpaca-trade-api fredapi
+      - name: Multi-symbol pipeline
+        run: python -c "
+import sys; sys.path.insert(0,'.')
+from quant_swarm.data.pipeline_finmlkit import run_enhanced_pipeline, validate_tick_continuity
+multi = ['EURUSD=X','GBPUSD=X','USDJPY=X','AUDUSD=X','^GSPC','^DJI','^IXIC','GLD','SLV','USO','TLT']
+features,data = run_enhanced_pipeline(symbols=multi, interval='1m', period='7d')
+print('Pipeline complete. Verified', len(multi), 'symbols.')
+"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with: {name: quant-features, path: quant_swarm/data/features/, retention-days: 7}
