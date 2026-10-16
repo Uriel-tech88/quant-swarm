@@ -1,0 +1,79 @@
+# Strategy Specification Schema for Quant Swarm
+# All extracted strategies conform to this structure for Quant Dev Agent implementation
+
+strategy:
+  # Required identification
+  id: ""                    # UUID or descriptive slug
+  name: ""                  # Human-readable name
+  source_paper:             # Paper metadata
+    title: ""
+    authors: []
+    arxiv_id: ""            # e.g., "2405.19982"
+    ssrn_id: ""             # e.g., "4567891"
+    url: ""
+    published_date: ""
+    categories: []          # arXiv categories
+  
+  # Strategy classification
+  asset_class: ""           # forex, equity, crypto, futures, options, multi-asset
+  timeframe: ""             # tick, 1m, 5m, 1h, 1d, 1w
+  strategy_type: ""         # mean_reversion, momentum, statistical_arb, market_making, execution, portfolio_opt, regime_switching, news_based, ml_based
+  horizon: ""               # HFT, intraday, swing, position
+  
+  # Core logic (extracted from paper)
+  logic:
+    description: ""         # Plain English description
+    entry_rules: []         # List of entry conditions
+    exit_rules: []          # List of exit conditions
+    position_sizing: ""     # How position size determined
+    risk_controls: []       # Stop loss, max drawdown, position limits
+  
+  # Parameters (with defaults from paper)
+  parameters:
+    - name: ""
+      type: ""              # float, int, bool, string
+      default: 
+      range: [min, max]     # For optimization
+      description: ""
+  
+  # Data requirements
+  data_requirements:
+    symbols: []             # e.g., ["EURUSD", "GBPUSD"]
+    frequency: ""           # tick, 1m, 1h, 1d
+    lookback_period: ""     # e.g., "252d", "1000 bars"
+    features_needed: []     # e.g., ["returns", "volatility", "order_flow", "news_sentiment"]
+    external_data: []       # e.g., ["FRED", "news_api", "options_chain"]
+  
+  # Performance claims from paper (for validation)
+  claimed_performance:
+    sharpe_ratio: 0.0
+    max_drawdown: 0.0
+    annual_return: 0.0
+    win_rate: 0.0
+    profit_factor: 0.0
+    sample_period: ""       # e.g., "2020-2023"
+    universe: ""            # e.g., "10 major FX pairs"
+    benchmark: ""           # e.g., "buy-and-hold", "equal-weight"
+  
+  # Implementation hints
+  implementation:
+    complexity: ""          # low, medium, high
+    libraries_needed: []    # e.g., ["FinMLKit", "vectorbt", "FinRL", "PyPortfolioOpt"]
+    estimated_lines: 0
+    key_challenges: []      # e.g., "regime detection", "transaction costs", "data quality"
+    suggested_approach: ""  # e.g., "Use FinRL PPO with custom reward", "HRP + BL ensemble"
+  
+  # Validation status
+  validation:
+    backtested: false
+    paper_traded: false
+    live_traded: false
+    sharpe_achieved: 0.0
+    drawdown_achieved: 0.0
+    notes: ""
+  
+  # Metadata
+  extracted_at: ""          # ISO timestamp
+  extracted_by: "strategy_extractor_v1"
+  confidence: 0.0           # 0-1, how confident extraction is
+  tags: []                  # e.g., ["forex", "RL", "HRP", "news"]

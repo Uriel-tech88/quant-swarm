@@ -1,45 +1,26 @@
-# Quant Swarm Status — Telegram Report
+# Quant Swarm Report — 2026-10-16 22:18 SAST
 
-**Last updated:** 2026-10-12T17:45:00+02:00
-**Profile:** default | **Model:** openrouter/free
-**Dashboard:** http://127.0.0.1:9119
-
-## Phase 1 — Foundation: COMPLETE ✅
-- Directory structure: `C:/Users/gqama/AppData/Local/hermes/quant_swarm/{research,data,models,portfolio,skills,logs,telegram_briefs}`
-- Data pipeline: `data/pipeline_finmlkit.py` — real 1m tick data via yfinance
-- Verified data: 28,365 rows EURUSD 1m (saved to `data/features/dollar_bars_EURUSDX.csv`)
-- Backtest harness: `backtests/vectorbt_harness.py`
-- Data sources skill: `skills/quant-data-sources/SKILL.md` (Kaggle, IB, Databento, OSF, LOBSTER, Firstrate)
-- Visuals: PNG + Plotly HTML in `backtests/`
-
-## Phase 2 — Core Agents: IN PROGRESS 🚧
-- Research Agent: arXiv/q-fin papers → `research/` ✅ (`research_agent.py`, `arxiv_fetcher.py`, `ssrn_fetcher.py`)
-- Data Agent: multi-source fetcher (yfinance 1m, ccxt, OANDA) → feature store ✅ **CREATED** `data/data_agent.py` (needs deps install + cron)
-- Quant Dev Agent: TWAP/VWAP execution sim (`skills/quant-dev/twap_vwap_simulation.py`) ✅
-- Portfolio Agent: HRP + Black-Litterman optimizer (`portfolio/hrp_optimizer.py`, `black_litterman.py`) ✅
-- Strategy Swarm: 151 SSRN category pipeline (`strategy-swarm-plan.md`, `strategy_schema.yaml`, `strategy_ingestion_agent.py`) ✅ **CREATED**
-
-## Phase 3 — RL & Distributed: IN PROGRESS 🚧
-- RL environment: `rl_envs/forex_env.py` (Gymnasium-compatible)
-- Training script: `rl_envs/train_ppo.py` (Stable-Baselines3 PPO)
-- Config: `models/rl_config.json`
-- Status subagent: `deleg_f1f27417` (live log: `cache/delegation/live/deleg_f1f27417/task-0.log`)
-- Status: PPO training started for EURUSD=X (20,000 steps) → `models/rl_checkpoints/`
-
-## Phase 4 — Integration & Automation: NOT STARTED ⏳
-
-## Free Data Stack (active)
-- yfinance 1m (verified 28,365 rows EURUSD)
-- OpenBB (not installed — free tier sources only)
-- Databento free credits
-- Kaggle, IB paper API, OSF, LOBSTER (procedures in quant-data-sources)
-
-## Next Actions Required
-1. `pip install yfinance pandas numpy` (in correct Python env)
-2. `hermes cron create "data-agent" "python C:/Users/gqama/AppData/Local/hermes/quant_swarm/data/data_agent.py --fetch --process" --schedule "0 */4 * * *"`
-3. `hermes cron create "strategy-swarm" "python C:/Users/gqama/AppData/Local/hermes/quant_swarm/research/strategy_ingestion_agent.py" --schedule "0 6 * * *"`
-
-## Commands (send in Telegram)
-- `/status` → this report
-- `/phase` → current phase + next steps
-- `/logs` → tail latest subagent log
+## ✅ DATA (0.0s)
+- reused local feature store (--skip-data)
+## ✅ BACKTEST (6.5s)
+- EURUSD=X: PnL -0.07% | Sharpe -0.68 | MaxDD -0.55% | 14 trades
+- GBPUSD=X: PnL +0.14% | Sharpe 1.16 | MaxDD -0.64% | 7 trades
+- USDJPY=X: PnL -1.24% | Sharpe -13.69 | MaxDD -1.31% | 17 trades
+- AUDUSD=X: PnL -0.09% | Sharpe -0.69 | MaxDD -0.62% | 8 trades
+- ^GSPC: PnL -1.46% | Sharpe -12.71 | MaxDD -1.61% | 8 trades
+- ^DJI: PnL +0.58% | Sharpe 4.00 | MaxDD -0.69% | 6 trades
+- ^IXIC: PnL -3.43% | Sharpe -15.64 | MaxDD -3.43% | 8 trades
+- GLD: PnL -0.57% | Sharpe -1.79 | MaxDD -2.09% | 6 trades
+- SLV: PnL -2.20% | Sharpe -2.99 | MaxDD -4.92% | 4 trades
+- USO: PnL +5.23% | Sharpe 15.60 | MaxDD -0.64% | 5 trades
+- TLT: PnL +1.65% | Sharpe 6.12 | MaxDD -1.08% | 6 trades
+- 🏆 best Sharpe: USO (15.60)
+## ✅ RL (0.0s)
+- torch not installed — RL stage skipped (checkpoint preserved)
+## ✅ PORTFOLIO (5.8s)
+- HRP over 11 assets | eff.N 8.21 | ann.vol 0.89%
+  - GBPUSDX: 16.3%
+  - IXIC: 14.9%
+  - USDJPYX: 14.7%
+  - EURUSDX: 13.4%
+  - AUDUSDX: 11.4%

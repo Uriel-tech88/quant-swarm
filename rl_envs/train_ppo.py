@@ -42,7 +42,6 @@ def train_ppo(symbol="EURUSD=X", total_timesteps=20000, save_interval=5000):
         clip_range=0.2,
         ent_coef=0.01,
         verbose=1,
-        tensorboard_log=str(LOG_DIR),
     )
     
     # Checkpoint callback
