@@ -19,7 +19,7 @@ jobs:
           python -c "
           import sys; sys.path.insert(0,'.')
           from data.pipeline_finmlkit import run_enhanced_pipeline
-          multi = ['EURUSD=X','GBPUSD=X','USDJPY=X','AUDUSD=X','^GSPC','^DJI','^IXIC','GLD','SLV','USO','TLT']
+          multi = ['EURUSD=X','GBPUSD=X','USDJPY=X','AUDUSD=X','GC=F','^GSPC','^DJI','^IXIC','GLD','SLV','USO','TLT']
           features,data = run_enhanced_pipeline(symbols=multi, interval='1m', period='7d')
           print('Pipeline complete. Verified', len(multi), 'symbols.')
           "

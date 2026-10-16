@@ -1,0 +1,38 @@
+strategy:
+  id: macd_trend
+  name: MACD(12,26,9) Trend Following
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: momentum
+  horizon: intraday
+  logic:
+    description: "Section 3.1 Trend Following of SSRN 3247865, implemented in backtests/strategy_library.py"
+    entry_rules:
+      - "MACD line crosses above signal -> long"
+      - "MACD below signal -> short"
+    exit_rules:
+      - "Signal-line cross"
+    position_size: "fixed 1 unit (vol-targeted where noted)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance", "leverage cap 3x on vol-target"]
+  parameters:
+    - {name: fast, type: int, default: 12, range: [5, 20], description: "fast parameter"}
+    - {name: slow, type: int, default: 26, range: [20, 60], description: "slow parameter"}
+    - {name: signal, type: int, default: 9, range: [5, 20], description: "signal parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_macd_trend"
+    runner: "swarm_run.py stage strategies"
+  status: implemented
+  backtested: true

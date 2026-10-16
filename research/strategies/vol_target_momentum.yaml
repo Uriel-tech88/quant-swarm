@@ -1,0 +1,37 @@
+strategy:
+  id: vol_target_momentum
+  name: Volatility-Targeted Momentum Overlay
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: momentum
+  horizon: intraday
+  logic:
+    description: "Section 9 Volatility Targeting of SSRN 3247865, implemented in backtests/strategy_library.py"
+    entry_rules:
+      - "SMA-20 direction (+1/-1)"
+      - "Position scaled by target_vol / realized_vol(48h), capped 3x"
+    exit_rules:
+      - "Continuous rebalance"
+    position_size: "fixed 1 unit (vol-targeted where noted)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance", "leverage cap 3x on vol-target"]
+  parameters:
+    - {name: target_vol, type: float, default: 0.1, range: [0.05, 0.2], description: "target_vol parameter"}
+    - {name: vol_window, type: int, default: 48, range: [24, 168], description: "vol_window parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_vol_target_momentum"
+    runner: "swarm_run.py stage strategies"
+  status: implemented
+  backtested: true

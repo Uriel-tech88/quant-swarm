@@ -13,7 +13,7 @@ def run_pipeline():
     import pandas as pd
 
     multi = [
-        "EURUSD=X", "GBPUSD=X", "USDJPY=X", "AUDUSD=X",
+        "EURUSD=X", "GBPUSD=X", "USDJPY=X", "AUDUSD=X", "GC=F",
         "^GSPC", "^DJI", "^IXIC",
         "GLD", "SLV", "USO", "TLT"
     ]

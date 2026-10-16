@@ -12,7 +12,7 @@ from backtests.vectorbt_harness import run_backtest, multi_symbol
 # Strategy definition: Simple Momentum (from 151 Trading Strategies — Trend Following / Section 3.1)
 # Uses price momentum (close > SMA 20) as entry; triple-barrier labels for stop/exit.
 
-MULTI = ["EURUSD=X","GBPUSD=X","USDJPY=X","AUDUSD=X","^GSPC","^DJI","^IXIC","GLD","SLV","USO","TLT"]
+MULTI = ["EURUSD=X","GBPUSD=X","USDJPY=X","AUDUSD=X","GC=F","^GSPC","^DJI","^IXIC","GLD","SLV","USO","TLT"]
 
 results = {}
 for sym in MULTI:

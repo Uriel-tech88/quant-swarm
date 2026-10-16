@@ -11,7 +11,7 @@ data = {"symbols": {}, "updated": None}
 def refresh():
     try:
         import yfinance as yf
-        symbols = ["EURUSD=X","GBPUSD=X","USDJPY=X","AUDUSD=X","^GSPC","^DJI","^IXIC","GLD","SLV","USO","TLT"]
+        symbols = ["EURUSD=X","GBPUSD=X","USDJPY=X","AUDUSD=X","GC=F","^GSPC","^DJI","^IXIC","GLD","SLV","USO","TLT"]
         tick = yf.Tickers(symbols).tickers
         out = {}
         for s in symbols:

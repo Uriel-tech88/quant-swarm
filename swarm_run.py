@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT))
 
 SYMBOLS = [
     "EURUSD=X", "GBPUSD=X", "USDJPY=X", "AUDUSD=X",
+    "GC=F",  # XAUUSD gold (Yahoo has no XAUUSD=X spot; GC=F COMEX futures track it)
     "^GSPC", "^DJI", "^IXIC",
     "GLD", "SLV", "USO", "TLT",
 ]
@@ -129,6 +130,26 @@ def run_backtests():
         return {s: _pandas_backtest(s) for s in SYMBOLS}
 
 
+# ---------------- STAGE 2b: SSRN STRATEGY LIBRARY ----------------
+@stage("strategies")
+def run_strategies():
+    from backtests.strategy_library import run_all, summarize
+
+    class _Resolver:
+        symbols = SYMBOLS
+
+        def __call__(self, sym):
+            return _csv_for(sym)
+
+    res = run_all(_Resolver())
+    summary = summarize(res)
+    briefs = ROOT / "research" / "strategies"
+    briefs.mkdir(parents=True, exist_ok=True)
+    out = briefs / f"results_{datetime.now(SAST).strftime('%Y%m%d_%H%M%S')}.json"
+    out.write_text(json.dumps({"results": res, "summary": summary["per_strategy"]}, default=str, indent=2), encoding="utf-8")
+    return {"summary": summary, "saved": str(out)}
+
+
 # ---------------- STAGE 3: RL AGENT ----------------
 @stage("rl")
 def run_rl(train=False):
@@ -203,6 +224,11 @@ def run_synthesis():
                         best = (sym, r)
             if best:
                 lines.append(f"- 🏆 best Sharpe: {best[0]} ({best[1]['sharpe']:.2f})")
+        elif name == "strategies":
+            lb = d["summary"]["leaderboard"]
+            lines.append(f"- {len(d['summary']['per_strategy'])} SSRN-derived strategies benchmarked:")
+            for sname, agg in lb:
+                lines.append(f"  - {sname}: mean Sharpe {agg['mean_sharpe']:+.2f} | best {agg['best_sharpe']:+.2f} | totPnL {agg['total_pnl']:+.2f}% ({agg['n_symbols']} symbols)")
         elif name == "portfolio":
             lines.append(f"- HRP over {len(d['assets'])} assets | eff.N {d['effective_assets']} | ann.vol {d['annualized_vol']}%")
             top = sorted(d["weights"].items(), key=lambda kv: -kv[1])[:5]
@@ -272,6 +298,7 @@ def main():
     else:
         run_data()
     run_backtests()
+    run_strategies()
     run_rl(train=args.rl_train)
     run_portfolio()
     run_synthesis()

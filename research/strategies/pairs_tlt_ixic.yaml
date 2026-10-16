@@ -1,0 +1,37 @@
+strategy:
+  id: pairs_tlt_ixic
+  name: TLT/^IXIC Log-Spread Stat-Arb
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: statistical_arb
+  horizon: intraday
+  logic:
+    description: "Section 5.4 Statistical Arbitrage of SSRN 3247865, implemented in backtests/strategy_library.py"
+    entry_rules:
+      - "Spread z-score < -1.5 -> long spread (long TLT short IXIC)"
+      - "z > +1.5 -> short spread"
+    exit_rules:
+      - "|z| < 0.25 -> flat"
+    position_size: "fixed 1 unit (vol-targeted where noted)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance", "leverage cap 3x on vol-target"]
+  parameters:
+    - {name: z_window, type: int, default: 48, range: [24, 240], description: "z_window parameter"}
+    - {name: entry_z, type: float, default: 1.5, range: [1.0, 2.5], description: "entry_z parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "backtest_pair"
+    runner: "swarm_run.py stage strategies"
+  status: implemented
+  backtested: true

@@ -1,0 +1,36 @@
+strategy:
+  id: momentum_sma20
+  name: Momentum SMA-20 Trend Following
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: momentum
+  horizon: intraday
+  logic:
+    description: "Section 3.1 Trend Following of SSRN 3247865, implemented in backtests/strategy_library.py"
+    entry_rules:
+      - "Close crosses above 20-bar SMA -> long"
+      - "Close below SMA -> flat"
+    exit_rules:
+      - "Exit when close < SMA"
+    position_size: "fixed 1 unit (vol-targeted where noted)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance", "leverage cap 3x on vol-target"]
+  parameters:
+    - {name: sma_period, type: int, default: 20, range: [5, 200], description: "sma_period parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_momentum_sma20"
+    runner: "swarm_run.py stage strategies"
+  status: implemented
+  backtested: true
