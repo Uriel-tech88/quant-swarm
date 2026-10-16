@@ -100,6 +100,56 @@ def sig_vol_target_momentum(ohlc, target_vol=0.10):
     return (direction * scale).shift(1).fillna(0.0)
 
 
+def atr(ohlc: pd.DataFrame, period: int = 14) -> pd.Series:
+    hi, lo, cl = ohlc["High"], ohlc["Low"], ohlc["Close"]
+    tr = pd.concat([hi - lo, (hi - cl.shift()).abs(), (lo - cl.shift()).abs()], axis=1).max(axis=1)
+    return tr.ewm(alpha=1 / period, adjust=False).mean()
+
+
+def sig_ema_crossover(ohlc, fast=9, slow=21):
+    """EMA fast/slow crossover trend-following (SSRN §3.1 moving-average family)."""
+    close = ohlc["Close"]
+    ema_f = close.ewm(span=fast, adjust=False).mean()
+    ema_s = close.ewm(span=slow, adjust=False).mean()
+    return np.sign(ema_f - ema_s).shift(1).fillna(0.0)
+
+
+def sig_keltner_squeeze(ohlc, ema_period=20, atr_period=14, mult=2.0):
+    """Keltner channel breakout (SSRN §3.2 channel-breakout family)."""
+    close = ohlc["Close"]
+    mid = close.ewm(span=ema_period, adjust=False).mean()
+    a = atr(ohlc, atr_period)
+    upper, lower = mid + mult * a, mid - mult * a
+    pos = pd.Series(np.nan, index=close.index)
+    pos[close > upper] = 1.0
+    pos[close < lower] = -1.0
+    pos[(close < mid) & (close > mid - mult * a * 0.25)] = 0.0  # exit on reversion to mid
+    pos[(close > mid) & (close < mid + mult * a * 0.25)] = 0.0
+    return pos.ffill().fillna(0.0).shift(1).fillna(0.0)
+
+
+def sig_atr_trailing_stop(ohlc, atr_period=14, mult=3.0):
+    """Long-on-strength with chandelier ATR trailing stop (SSRN risk-overlay family)."""
+    close = ohlc["Close"].values
+    a = atr(ohlc, atr_period).values
+    sma = ohlc["Close"].rolling(20).mean().values
+    pos = np.zeros(len(close))
+    in_pos = False
+    stop = 0.0
+    for i in range(1, len(close)):
+        if np.isnan(a[i]) or np.isnan(sma[i]):
+            pos[i] = 1.0 if in_pos else 0.0
+            continue
+        if not in_pos and close[i] > sma[i]:
+            in_pos, stop = True, close[i] - mult * a[i]
+        elif in_pos:
+            stop = max(stop, close[i] - mult * a[i])
+            if close[i] < stop:
+                in_pos = False
+        pos[i] = 1.0 if in_pos else 0.0
+    return pd.Series(pos, index=ohlc.index).shift(1).fillna(0.0)
+
+
 SINGLE_STRATEGIES = {
     "momentum_sma20": sig_momentum_sma20,
     "bollinger_zscore": sig_bollinger_zscore,
@@ -107,6 +157,9 @@ SINGLE_STRATEGIES = {
     "macd_trend": sig_macd_trend,
     "donchian_breakout": sig_donchian_breakout,
     "vol_target_momentum": sig_vol_target_momentum,
+    "ema_crossover": sig_ema_crossover,
+    "keltner_squeeze": sig_keltner_squeeze,
+    "atr_trailing_stop": sig_atr_trailing_stop,
 }
 
 PAIR_STRATEGIES = {
@@ -153,9 +206,40 @@ def backtest_pair(csv_a, csv_b) -> dict:
     return _metrics(spread_ret * pos - costs, pos)
 
 
+def backtest_xsec_momentum(csv_resolver, lookback=48, top_n=3) -> dict:
+    """Cross-sectional momentum (SSRN §3.3): hourly, rank all symbols by past
+    `lookback`-hour return; long top N, short bottom N, equal-weighted."""
+    closes = {}
+    for sym in csv_resolver.symbols:
+        p = csv_resolver(sym)
+        if p is not None:
+            try:
+                closes[sym] = load_hourly_close(p)
+            except Exception:
+                pass
+    if len(closes) < 2 * top_n + 1:
+        return {"error": f"need >= {2*top_n+1} symbols, have {len(closes)}"}
+    px = pd.DataFrame(closes).ffill().dropna(how="all")
+    fwd = px.pct_change().fillna(0.0)
+    mom = px.pct_change(lookback)
+    pos = pd.DataFrame(0.0, index=px.index, columns=px.columns)
+    for ts in mom.dropna(how="all").index:
+        row = mom.loc[ts].dropna()
+        if len(row) < 2 * top_n:
+            continue
+        ranked = row.sort_values()
+        pos.loc[ts, ranked.index[-top_n:]] = 1.0 / top_n    # long winners
+        pos.loc[ts, ranked.index[:top_n]] = -1.0 / top_n    # short losers
+    pos = pos.shift(1).fillna(0.0)
+    gross = (fwd * pos).sum(axis=1)
+    turnover = pos.diff().abs().sum(axis=1).fillna(0.0)
+    net = gross - turnover * COST_BPS
+    return _metrics(net, pos.sum(axis=1))
+
+
 def run_all(csv_resolver) -> dict:
     """Run every strategy. csv_resolver(sym) -> Path or None (handles GC=F etc.)."""
-    out = {"single": {}, "pairs": {}}
+    out = {"single": {}, "pairs": {}, "xsec": {}}
     symbols = [s for s in csv_resolver.symbols if csv_resolver(s) is not None]
     for name, fn in SINGLE_STRATEGIES.items():
         out["single"][name] = {}
@@ -171,6 +255,10 @@ def run_all(csv_resolver) -> dict:
             out["pairs"][name] = backtest_pair(ca, cb) if ca and cb else {"error": "missing csv"}
         except Exception as e:
             out["pairs"][name] = {"error": str(e)[:100]}
+    try:
+        out["xsec"]["xsec_momentum_top3bot3"] = backtest_xsec_momentum(csv_resolver)
+    except Exception as e:
+        out["xsec"]["xsec_momentum_top3bot3"] = {"error": str(e)[:150]}
     return out
 
 
@@ -190,6 +278,10 @@ def summarize(results: dict) -> dict:
     for name, r in results["pairs"].items():
         if "sharpe" in r:
             agg[name] = {"n_symbols": 1, "mean_sharpe": r["sharpe"],
+                         "best_sharpe": r["sharpe"], "total_pnl": round(r["pnl"] * 100, 2)}
+    for name, r in results.get("xsec", {}).items():
+        if "sharpe" in r:
+            agg[name] = {"n_symbols": 12, "mean_sharpe": r["sharpe"],
                          "best_sharpe": r["sharpe"], "total_pnl": round(r["pnl"] * 100, 2)}
     leaderboard = sorted(agg.items(), key=lambda kv: -kv[1]["mean_sharpe"])
     return {"per_strategy": agg, "leaderboard": leaderboard}

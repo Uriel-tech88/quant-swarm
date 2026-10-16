@@ -1,0 +1,38 @@
+strategy:
+  id: keltner_squeeze
+  name: Keltner Channel Breakout
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: momentum
+  horizon: intraday
+  logic:
+    description: "Section 3.2 Channel Breakout of SSRN 3247865, implemented in backtests/strategy_library.py"
+    entry_rules:
+      - "Close breaks above EMA20 + 2*ATR14 -> long"
+      - "Close breaks below EMA20 - 2*ATR14 -> short"
+    exit_rules:
+      - "Price reverts to channel mid"
+    position_size: "fixed 1 unit per symbol (xsec uses 1/N per leg)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance"]
+  parameters:
+    - {name: ema_period, type: int, default: 20, range: [10, 50], description: "ema_period parameter"}
+    - {name: atr_period, type: int, default: 14, range: [7, 30], description: "atr_period parameter"}
+    - {name: mult, type: float, default: 2.0, range: [1.5, 3.0], description: "mult parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all 12 swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_keltner_squeeze"
+    runner: "swarm_run.py stage strategies"
+  status: implemented
+  backtested: true
