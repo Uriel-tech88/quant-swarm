@@ -13,14 +13,14 @@ import json
 OUTPUT_DIR = Path(__file__).parent
 DASHBOARD_PATH = OUTPUT_DIR / "cyberpunk_dashboard.html"
 
-# Cyberpunk color palette
-NEON_GREEN = "#00ff41"
-NEON_PINK = "#ff00ff"
-NEON_CYAN = "#00ffff"
-NEON_YELLOW = "#ffff00"
-DARK_BG = "#0a0a0a"
-GRID_COLOR = "#1a1a1a"
-PANEL_BG = "#111111"
+# Hedge fund color palette (professional dark navy + gold/steel)
+PRIMARY_GOLD = "#c5a059"
+PRIMARY_COPPER = "#e07a5f"
+PRIMARY_STEEL = "#5ba3c4"
+PRIMARY_AMBER = "#d4a843"
+DARK_BG = "#0e1117"
+GRID_COLOR = "#2a303c"
+PANEL_BG = "#131620"
 
 def get_live_data():
     """Fetch live data from the quant swarm."""
@@ -43,13 +43,13 @@ def create_cyberpunk_dashboard():
     fig = make_subplots(
         rows=5, cols=3,
         subplot_titles=(
-            "SYSTEM MATRIX", "PORTFOLIO VALUE", "TRADING STATUS",
-            "PRICE TRACKER", "PERFORMANCE CHART", "DRAWDOWN LEVELS",
-            "ORDER BOOK", "RL MODEL STATUS", "SYMBOL MATRIX",
-            "LIVE METRICS", "ALERTS FEED", "SCHEDULED TASKS"
-        ),
-        vertical_spacing=0.04,
-        horizontal_spacing=0.03,
+                    "SYSTEM", "PORTFOLIO", "STATUS",
+                    "PRICE", "PERFORMANCE", "DRAWDOWN",
+                    "ORDER BOOK", "RL STATUS", "SYMBOLS",
+                    "METRICS", "ALERTS", "SCHEDULE"
+                ),
+        vertical_spacing=0.10,
+                horizontal_spacing=0.10,
         specs=[
             [{"type": "indicator"}, {"type": "indicator"}, {"type": "indicator"}],
             [{"type": "scatter"}, {"type": "scatter"}, {"type": "bar"}],
@@ -68,9 +68,9 @@ def create_cyberpunk_dashboard():
             title={'text': "SYSTEM STATUS<br><small>OPERATIONAL</small>"},
             gauge={
                         'axis': {'range': [0, 100], 'tickwidth': 2},
-                        'bar': {'color': NEON_GREEN, 'thickness': 0.8},
+                        'bar': {'color': PRIMARY_GOLD, 'thickness': 0.8},
                         'borderwidth': 2,
-                        'bordercolor': NEON_GREEN,
+                        'bordercolor': PRIMARY_GOLD,
                         'steps': [{'range': [0, 100], 'color': '#0d0208'}],
                     }
                 ), row=1, col=1)
@@ -91,9 +91,9 @@ def create_cyberpunk_dashboard():
         title={'text': "ALGO HEALTH<br><small>OPTIMAL</small>"},
         gauge={
                     'axis': {'range': [0, 100], 'tickwidth': 2},
-                    'bar': {'color': NEON_CYAN, 'thickness': 0.8},
+                    'bar': {'color': PRIMARY_STEEL, 'thickness': 0.8},
                     'borderwidth': 2,
-                    'bordercolor': NEON_CYAN,
+                    'bordercolor': PRIMARY_STEEL,
                 }
             ), row=1, col=3)
 
@@ -106,9 +106,9 @@ def create_cyberpunk_dashboard():
             x=list(range(len(df))),
             y=df['Close'].values,
             name="EUR/USD",
-            line=dict(color=NEON_GREEN, width=2.5, shape="spline", smoothing=1.3),
+            line=dict(color=PRIMARY_GOLD, width=2.5, shape="spline", smoothing=1.3),
             fill="tozeroy",
-            fillcolor="rgba(0,255,65,0.08)",
+            fillcolor="rgba(197,160,89,0.12)",
             text=[f"Open: {o:.4f}<br>High: {h:.4f}<br>Low: {l:.4f}<br>Close: {c:.4f}"
                   for o, h, l, c in zip(df['Open'], df['High'], df['Low'], df['Close'])],
             hovertemplate="<b>%{text}</b><extra>Time: %{x}</extra>",
@@ -119,9 +119,9 @@ def create_cyberpunk_dashboard():
         fig.add_trace(go.Scatter(
             x=x, y=y,
             name="EUR/USD (LIVE)",
-            line=dict(color=NEON_GREEN, width=2.5),
+            line=dict(color=PRIMARY_GOLD, width=2.5),
             fill="tozeroy",
-            fillcolor="rgba(0,255,65,0.08)"
+            fillcolor="rgba(197,160,89,0.12)"
         ), row=2, col=1)
 
     # Performance Chart (Strategy vs Buy & Hold)
@@ -129,9 +129,9 @@ def create_cyberpunk_dashboard():
         x=list(range(100)),
         y=[100 + i * 0.15 + (i % 7 - 3) * 0.1 for i in range(100)],
         name="Strategy",
-        line=dict(color=NEON_PINK, width=2.5, shape="spline"),
+        line=dict(color=PRIMARY_COPPER, width=2.5, shape="spline"),
         fill="tozeroy",
-        fillcolor="rgba(255,0,255,0.05)",
+        fillcolor="rgba(224,122,95,0.12)",
         text=[f"Return: +{i*0.15:.2f}%" for i in range(100)],
         hovertemplate="<b>%{text}</b><extra>Step: %{x}</extra>"
     ), row=2, col=2)
@@ -140,14 +140,14 @@ def create_cyberpunk_dashboard():
         x=list(range(100)),
         y=[100 + i * 0.08 + (i % 7 - 3) * 0.05 for i in range(100)],
         name="Buy & Hold",
-        line=dict(color=NEON_CYAN, width=1.5, dash="dot"),
+        line=dict(color=PRIMARY_STEEL, width=1.5, dash="dot"),
     ), row=2, col=2)
 
     # Drawdown Bars
     fig.add_trace(go.Bar(
         x=["EUR/USD 1m", "GBP/JPY 5m", "SPY 15m", "GLD 30m", "TLT Daily"],
         y=[-2.3, -3.1, -1.8, -0.9, -4.2],
-        marker_color=[NEON_GREEN]*3 + [NEON_CYAN, NEON_PINK],
+        marker_color=[PRIMARY_GOLD]*3 + [PRIMARY_STEEL, PRIMARY_COPPER],
         name="Max Drawdown %",
         text=["-2.3%", "-3.1%", "-1.8%", "-0.9%", "-4.2%"]
     ), row=2, col=3)
@@ -160,10 +160,10 @@ def create_cyberpunk_dashboard():
         mode="lines+markers+text",
         text=["Ask 1.0854", "Ask 1.0853", "Ask 1.0852", "Ask 1.0851", "Last", "Bid 1.0849", "Bid 1.0848", "Bid 1.0847"],
         textposition="middle right",
-        line=dict(color=NEON_YELLOW, width=2),
+        line=dict(color=PRIMARY_AMBER, width=2),
         marker=dict(size=10),
         name="Order Book",
-        textfont=dict(color=NEON_GREEN)
+        textfont=dict(color=PRIMARY_GOLD)
     ), row=3, col=1)
 
     # RL Model Training
@@ -174,9 +174,9 @@ def create_cyberpunk_dashboard():
         title={'text': "RL MODEL (PPO)<br><small>TRAINING</small>"},
         gauge={
                     'axis': {'range': [0, 50000], 'tickwidth': 2},
-                    'bar': {'color': NEON_PINK, 'thickness': 0.8},
+                    'bar': {'color': PRIMARY_COPPER, 'thickness': 0.8},
                     'borderwidth': 2,
-                    'bordercolor': NEON_PINK,
+                    'bordercolor': PRIMARY_COPPER,
                 }
             ), row=3, col=2)
 
@@ -184,7 +184,7 @@ def create_cyberpunk_dashboard():
     fig.add_trace(go.Bar(
         x=["Buy", "Sell", "Hold"],
         y=[42, 23, 35],
-        marker_color=[NEON_GREEN, NEON_PINK, NEON_CYAN],
+        marker_color=[PRIMARY_GOLD, PRIMARY_COPPER, PRIMARY_STEEL],
         name="Actions",
         text=["42%", "23%", "35%"]
     ), row=3, col=3)
@@ -198,7 +198,7 @@ def create_cyberpunk_dashboard():
         title={'text': "LATENCY<br><small>NETWORK</small>"},
         gauge={
                     'axis': {'range': [0, 100], 'tickwidth': 2},
-                    'bar': {'color': NEON_CYAN},
+                    'bar': {'color': PRIMARY_STEEL},
                 }
             ), row=4, col=1)
 
@@ -207,9 +207,9 @@ def create_cyberpunk_dashboard():
         x=list(range(50)),
         y=[1000 * i for i in range(50)],
         name="Reward",
-        line=dict(color=NEON_PINK, width=2),
+        line=dict(color=PRIMARY_COPPER, width=2),
         fill="tozeroy",
-        fillcolor="rgba(255,0,255,0.05)",
+        fillcolor="rgba(224,122,95,0.12)",
     ), row=4, col=2)
 
     # Symbol Matrix
@@ -218,7 +218,7 @@ def create_cyberpunk_dashboard():
     fig.add_trace(go.Bar(
         x=symbols,
         y=values,
-        marker_color=[(NEON_GREEN if v > 0 else NEON_PINK) for v in values],
+        marker_color=[(PRIMARY_GOLD if v > 0 else PRIMARY_COPPER) for v in values],
         name="Symbol Performance %",
     ), row=4, col=3)
 
@@ -226,9 +226,9 @@ def create_cyberpunk_dashboard():
     # Live Metrics Table
     fig.add_trace(go.Table(
             header=dict(
-                text=["Metric", "Status"],
+                values=["Metric", "Status"],
                 fill_color=PANEL_BG,
-                font=dict(color=NEON_GREEN, size=11),
+                font=dict(color=PRIMARY_GOLD, size=11),
                 line_color=GRID_COLOR,
                 align="left"
             ),
@@ -237,7 +237,7 @@ def create_cyberpunk_dashboard():
                     ["Active Agents", "Pending Tasks", "Memory Used", "Last Run", "Model"],
                     ["7/7", "0", "24.5%", "2 min ago", "PPO v0.3.7"]
                 ],
-                font=dict(color=NEON_CYAN, size=10),
+                font=dict(color=PRIMARY_STEEL, size=10),
                 fill_color=DARK_BG,
                 line_color=GRID_COLOR,
                 align="left"
@@ -247,9 +247,9 @@ def create_cyberpunk_dashboard():
     # Alerts Table
     fig.add_trace(go.Table(
             header=dict(
-                text=["Time", "Alert", "Priority"],
+                values=["Time", "Alert", "Priority"],
                 fill_color=PANEL_BG,
-                font=dict(color=NEON_PINK, size=11),
+                font=dict(color=PRIMARY_COPPER, size=11),
                 line_color=GRID_COLOR,
                 align="left"
             ),
@@ -259,7 +259,7 @@ def create_cyberpunk_dashboard():
                     ["Signal: EUR/USD buy", "RL checkpoint saved", "Pipeline refreshed"],
                     ["HIGH", "LOW", "LOW"]
                 ],
-                font=dict(color=NEON_GREEN, size=10),
+                font=dict(color=PRIMARY_GOLD, size=10),
                 fill_color=DARK_BG,
                 line_color=GRID_COLOR,
                 align="left"
@@ -271,16 +271,16 @@ def create_cyberpunk_dashboard():
         header=dict(
             values=[["Job", "Schedule"]],
             fill_color=PANEL_BG,
-            font=dict(color=NEON_CYAN, size=11),
+            font=dict(color=PRIMARY_STEEL, size=11),
             line_color=GRID_COLOR,
             align="left"
         ),
         cells=dict(
-            text=[
-                ["Swarm Pipeline", "Self-Learning Review", "Weekly Review"],
-                ["*/5 * * * *", "Daily @ 09:00", "Mon @ 09:00"],
-            ],
-            font=dict(color=NEON_GREEN, size=10),
+                    values=[
+                        ["Swarm Pipeline", "Self-Learning Review", "Weekly Review"],
+                        ["*/5 * * * *", "Daily @ 09:00", "Mon @ 09:00"],
+                    ],
+            font=dict(color=PRIMARY_GOLD, size=10),
             fill_color=DARK_BG,
             line_color=GRID_COLOR,
             align="left"
@@ -290,23 +290,23 @@ def create_cyberpunk_dashboard():
     # Cyberpunk layout
     fig.update_layout(
         title={
-            'text': "CYBERPUNK QUANT SWARM DASHBOARD<br>"
-                    "<sub>7-Agent Orchestrated Trading System • LIVE • Auto-refresh: 5min</sub>",
-            'x': 0.5,
-            'font': {'size': 24, 'color': NEON_GREEN}
-        },
+                    'text': "QUANT SWARM DASHBOARD<br>"
+                            "<sub>7-Agent System • LIVE • Auto-refresh 5min</sub>",
+                    'x': 0.5,
+                    'font': {'size': 20, 'color': PRIMARY_GOLD}
+                },
         height=1500,
         width=1920,
         template='plotly_dark',
         showlegend=True,
         margin=dict(t=120, b=20, l=20, r=20),
         paper_bgcolor=DARK_BG,
-        plot_bgcolor="#080808",
-        font=dict(color=NEON_GREEN),
+        plot_bgcolor="#111111",
+        font=dict(color=PRIMARY_GOLD),
         legend=dict(
             bgcolor=DARK_BG,
             bordercolor=GRID_COLOR,
-            font=dict(color=NEON_CYAN)
+            font=dict(color=PRIMARY_STEEL)
         ),
     )
 
@@ -319,7 +319,7 @@ def create_cyberpunk_dashboard():
         xref="paper", yref="paper",
         x=0.5, y=-0.02,
         showarrow=False,
-        font=dict(color=NEON_GREEN, size=12)
+        font=dict(color=PRIMARY_GOLD, size=12)
     )
 
     fig.write_html(str(DASHBOARD_PATH), include_plotlyjs="cdn", full_html=True)
