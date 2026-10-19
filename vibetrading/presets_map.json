@@ -1,0 +1,28 @@
+{
+  "_comment": "VibeTrading 30 swarm presets mapped to quant-swarm agent stages. Used by bridge.py.",
+  "quant_swarm_agents": [
+    "research", "data", "quant_dev", "rl", "backtest", "portfolio", "synthesis"
+  ],
+  "presets": {
+    "investment_committee":      {"stage": "synthesis",  "focus": "bull/bear debate -> PM final call"},
+    "macro_rates_fx_desk":       {"stage": "research",   "focus": "rates + FX + commodity -> macro PM"},
+    "quant_strategy_desk":       {"stage": "backtest",   "focus": "screen + factor -> backtest -> risk audit"},
+    "risk_committee":            {"stage": "portfolio",  "focus": "drawdown + tail risk + regime -> sign-off"},
+    "technical_analysis_panel":  {"stage": "quant_dev",  "focus": "TA + Ichimoku + harmonic + Elliott + SMC"},
+    "global_allocation_committee":{"stage": "portfolio", "focus": "cross-market allocation"},
+    "global_equities_desk":      {"stage": "research",   "focus": "A-share + HK/US + crypto -> strategist"},
+    "earnings_research_desk":    {"stage": "research",   "focus": "fundamental + revision + options"},
+    "crypto_trading_desk":       {"stage": "quant_dev",  "focus": "funding/basis + liquidation + flow"},
+    "etf_allocation_desk":       {"stage": "portfolio",  "focus": "ETF screening + macro -> risk parity/MVO"},
+    "sector_rotation_team":      {"stage": "backtest",   "focus": "cycle mapping -> rotation backtest"},
+    "sentiment_intelligence_team":{"stage": "research",  "focus": "news/social/flow -> sentiment score"},
+    "value_investing_committee": {"stage": "synthesis",  "focus": "Buffett/Munger/Duan/Li Lu + chair"},
+    "ml_strategy_desk":          {"stage": "rl",         "focus": "feature eng -> ML train -> perf audit"},
+    "pairs_trading_desk":        {"stage": "quant_dev",  "focus": "cointegration mining -> mean-reversion"}
+  },
+  "symbols": {
+    "forex":      ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD"],
+    "indices":    ["^GSPC", "^DJI", "^IXIC"],
+    "synthetics": ["GLD", "SLV", "USO", "TLT", "GC=F"]
+  }
+}
