@@ -60,8 +60,11 @@ Source: `vibe-trading --swarm-presets`. Mapped to your swarm's stages:
 ## Commands
 
 ```sh
-# list all 30 presets
-vibe-trading --swarm-presets
+# list all 30 presets (CLI module is `cli`, not a standalone binary)
+python -m cli --swarm-presets
+
+# inspect a preset's agents + DAG
+python -m cli --swarm-inspect macro_rates_fx_desk
 
 # run the quant desk against your FX universe
 python vibetrading/bridge.py --preset quant_strategy_desk --market forex
@@ -73,7 +76,7 @@ python vibetrading/bridge.py --preset macro_rates_fx_desk
 python vibetrading/bridge.py --preset investment_committee
 
 # launch the Web UI (charts)
-vibe-trading init && vibe-trading
+python -m cli init && python -m cli dev
 ```
 
 ## Preset → quant-swarm agent mapping (JSON)
