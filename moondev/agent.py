@@ -171,9 +171,14 @@ class MoonDevAgent:
             .replace("{USDC_ADDRESS}", CASH_LABEL)
             .replace("USDC_ADDRESS", CASH_LABEL)
         )
+        # free models ramble and get truncated mid-dict; force compact output
+        prompt += (
+            "\n\nCRITICAL: Respond with ONLY the Python dictionary on a "
+            "SINGLE line. No reasoning, no markdown fences, no other text."
+        )
         message = self.client.messages.create(
             model=self.model,
-            max_tokens=AI_MAX_TOKENS,
+            max_tokens=max(AI_MAX_TOKENS, 2048),
             temperature=AI_TEMPERATURE,
             messages=[
                 {
