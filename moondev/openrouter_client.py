@@ -20,6 +20,7 @@ The key is never printed or logged.
 
 import os
 import json
+import time
 import requests
 from pathlib import Path
 from types import SimpleNamespace
@@ -70,6 +71,17 @@ class _Messages:
             json=body,
             timeout=120,
         )
+        if resp.status_code == 429:
+            time.sleep(20)
+            resp = requests.post(
+                OPENROUTER_URL,
+                headers={
+                    "Authorization": f"Bearer {self._key}",
+                    "Content-Type": "application/json",
+                },
+                json=body,
+                timeout=120,
+            )
         if resp.status_code != 200:
             raise RuntimeError(
                 f"OpenRouter HTTP {resp.status_code}: {resp.text[:300]}"

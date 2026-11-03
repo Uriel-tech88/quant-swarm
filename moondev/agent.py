@@ -195,8 +195,21 @@ class MoonDevAgent:
 
     def run_once(self, symbols):
         for sym in symbols:
-            market_data = build_market_data(sym)
-            self.analyze(sym, market_data)
+            try:
+                market_data = build_market_data(sym)
+                self.analyze(sym, market_data)
+            except Exception as e:
+                # one bad symbol (rate limit, data gap) must not kill the batch
+                self.recommendations_df = pd.concat(
+                    [
+                        self.recommendations_df,
+                        pd.DataFrame(
+                            [{"symbol": sym, "action": "ERROR", "confidence": 0,
+                              "reasoning": str(e)[:200]}]
+                        ),
+                    ],
+                    ignore_index=True,
+                )
             rec = self.recommendations_df.iloc[-1]
             print(
                 f"[{sym}] {rec['action']} ({rec['confidence']}% conf) — "
