@@ -25,7 +25,14 @@ def refresh():
     except Exception as e:
         data["updated"] = "error: " + str(e)[:60]
 
-threading.Thread(target=lambda: [refresh(), time.sleep(30), refresh()], daemon=True).start()
+def _refresh_loop():
+    """Refresh prices forever (the old lambda ran twice, then the ticker went stale)."""
+    while True:
+        refresh()
+        time.sleep(60)
+
+
+threading.Thread(target=_refresh_loop, daemon=True).start()
 
 @app.route("/")
 def home(): return '<a href="/ticker">Ticker JSON</a>'
