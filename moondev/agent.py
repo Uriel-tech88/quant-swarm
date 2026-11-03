@@ -126,9 +126,14 @@ class MoonDevAgent:
         confidence = 0
         for line in lines:
             if "confidence" in line.lower():
-                digits = "".join(filter(str.isdigit, line))
-                if digits:
-                    confidence = int(digits)
+                # upstream grabbed ALL digits in the line ("70% ... MA20/MA40"
+                # -> 70204040); take only the number attached to a % or the
+                # first small int after the word "confidence"
+                m = re.search(r"(\d{1,3})\s*%", line)
+                if not m:
+                    m = re.search(r"confidence[^\d]{0,25}(\d{1,3})\b", line, re.I)
+                if m:
+                    confidence = min(100, int(m.group(1)))
                     break
 
         reasoning = "\n".join(lines[1:]).strip() or "No detailed reasoning provided"
