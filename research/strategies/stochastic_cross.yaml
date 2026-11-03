@@ -1,0 +1,37 @@
+strategy:
+  id: stochastic_cross
+  name: Stochastic %K/%D Crossover
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: momentum
+  horizon: intraday
+  logic:
+    description: "Stochastic oscillator (Lane): trade %K(14,3) / %D(3) cross direction"
+    entry_rules:
+      - "%K crosses above %D -> long"
+      - "%K crosses below %D -> short"
+    exit_rules:
+      - "Opposite cross"
+    position_size: "fixed 1 unit per symbol (xsec uses 1/N per leg)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance"]
+  parameters:
+    - {name: k, type: int, default: 14, range: [7, 28], description: "k parameter"}
+    - {name: d, type: int, default: 3, range: [2, 7], description: "d parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all 12 swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_stochastic_cross"
+    runner: "swarm_run.py stage strategies | research/strategy_forge.py"
+  status: implemented
+  backtested: true

@@ -1,0 +1,57 @@
+{
+  "champions": [
+    {
+      "id": "short_term_reversal#lb48",
+      "family": "short_term_reversal",
+      "params": {
+        "lookback": 48
+      },
+      "train_sharpe": 0.32,
+      "oos_sharpe": 1.33,
+      "oos_pnl_pct": 0.99,
+      "oos_maxdd": -0.006,
+      "n_trades": 23,
+      "n_symbols": 12,
+      "promoted": "2026-11-03 07:55 SAST",
+      "source": "template-grid",
+      "status": "champion"
+    }
+  ],
+  "new_champions": [
+    {
+      "id": "short_term_reversal#lb48",
+      "family": "short_term_reversal",
+      "params": {
+        "lookback": 48
+      },
+      "train_sharpe": 0.32,
+      "oos_sharpe": 1.33,
+      "oos_pnl_pct": 0.99,
+      "oos_maxdd": -0.006,
+      "n_trades": 23,
+      "n_symbols": 12,
+      "promoted": "2026-11-03 07:55 SAST",
+      "source": "template-grid",
+      "status": "champion"
+    }
+  ],
+  "demoted": [],
+  "top_challengers": [
+    {
+      "id": "donchian_breakout#w40",
+      "family": "donchian_breakout",
+      "params": {
+        "window": 40
+      },
+      "train_sharpe": 0.48,
+      "oos_sharpe": -7.75,
+      "oos_pnl_pct": -3.71,
+      "oos_maxdd": -0.0118,
+      "n_trades": 20,
+      "n_symbols": 12,
+      "promoted": "2026-11-03 07:55 SAST",
+      "source": "template-grid",
+      "status": "challenger"
+    }
+  ]
+}

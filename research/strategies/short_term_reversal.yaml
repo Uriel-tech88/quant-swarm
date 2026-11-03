@@ -1,0 +1,35 @@
+strategy:
+  id: short_term_reversal
+  name: Short-Term Reversal
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: mean_reversion
+  horizon: intraday
+  logic:
+    description: "Short-term reversal (Jegadeesh 1990; Lehmann 1990): fade the past 24h move"
+    entry_rules:
+      - "Short after 24h up-move, long after 24h down-move"
+    exit_rules:
+      - "Signal flips sign"
+    position_size: "fixed 1 unit per symbol (xsec uses 1/N per leg)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance"]
+  parameters:
+    - {name: lookback, type: int, default: 24, range: [6, 72], description: "lookback parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all 12 swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_short_term_reversal"
+    runner: "swarm_run.py stage strategies | research/strategy_forge.py"
+  status: implemented
+  backtested: true

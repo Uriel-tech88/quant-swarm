@@ -1,0 +1,36 @@
+strategy:
+  id: breakout_vol_filter
+  name: Donchian Breakout with ATR-Expansion Filter
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: momentum
+  horizon: intraday
+  logic:
+    description: "Donchian 20 breakout, entries only when ATR(14) exceeds its 50-bar baseline (volatility expansion)"
+    entry_rules:
+      - "Close > 20-bar high AND ATR expanding -> long"
+      - "Close < 20-bar low AND ATR expanding -> short"
+    exit_rules:
+      - "Close returns within 10% of channel mid"
+    position_size: "fixed 1 unit per symbol (xsec uses 1/N per leg)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance"]
+  parameters:
+    - {name: window, type: int, default: 20, range: [10, 60], description: "window parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all 12 swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_breakout_vol_filter"
+    runner: "swarm_run.py stage strategies | research/strategy_forge.py"
+  status: implemented
+  backtested: true

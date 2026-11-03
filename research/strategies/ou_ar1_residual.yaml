@@ -1,0 +1,37 @@
+strategy:
+  id: ou_ar1_residual
+  name: OU/AR(1) Residual Mean Reversion
+  source_paper:
+    title: "151 Trading Strategies"
+    authors: [Zura Kakushadze, Juan Andres Serur]
+    arxiv_id: "1803.09734"
+    ssrn_id: "3247865"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3247865"
+    published_date: "2018-08-13"
+    categories: [q-fin.TR, q-fin.PM, q-fin.ST]
+  asset_class: multi-asset
+  timeframe: 1h
+  strategy_type: mean_reversion
+  horizon: intraday
+  logic:
+    description: "Ornstein-Uhlenbeck / AR(1) residual z-score: rolling OLS of log-price on lag, trade residual extremes"
+    entry_rules:
+      - "Residual z < -1.25 -> long"
+      - "Residual z > +1.25 -> short"
+    exit_rules:
+      - "|z| < 0.25"
+    position_size: "fixed 1 unit per symbol (xsec uses 1/N per leg)"
+    risk_controls: ["5bps cost per position change", "hourly rebalance"]
+  parameters:
+    - {name: window, type: int, default: 60, range: [40, 120], description: "window parameter"}
+    - {name: z_in, type: float, default: 1.25, range: [0.75, 2.5], description: "z_in parameter"}
+  data_requirements:
+    source: "yfinance 1m via data/pipeline_finmlkit.py"
+    symbols: "all 12 swarm symbols (FX, GC=F gold, indices, synthetics)"
+    lookback_days: 7
+  implementation:
+    module: "backtests/strategy_library.py"
+    function: "sig_ou_ar1_residual"
+    runner: "swarm_run.py stage strategies | research/strategy_forge.py"
+  status: implemented
+  backtested: true
