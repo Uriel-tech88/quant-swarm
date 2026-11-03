@@ -71,6 +71,23 @@ def _csv_for(sym):
     return max(candidates, key=lambda p: p.stat().st_mtime)
 
 
+def _read_ohlc(csv):
+    """Read a pipeline CSV guaranteeing a UTC DatetimeIndex.
+
+    parse_dates=True is unreliable on these files: yfinance writes tz-aware
+    timestamps (sometimes with mixed UTC offsets across chunked downloads),
+    which pandas then keeps as a string Index, and every .resample() call
+    downstream blows up with 'Only valid with DatetimeIndex'.
+    """
+    import pandas as pd
+    df = pd.read_csv(csv, index_col=0)
+    try:
+        df.index = pd.to_datetime(df.index, format="mixed", utc=True)
+    except (TypeError, ValueError):
+        df.index = pd.to_datetime(df.index, utc=True)
+    return df
+
+
 # ---------------- STAGE 1: DATA AGENT ----------------
 @stage("data")
 def run_data():
@@ -81,7 +98,7 @@ def run_data():
     for sym in SYMBOLS:
         csv = _csv_for(sym)
         if csv:
-            df = pd.read_csv(csv, index_col=0, parse_dates=True)
+            df = _read_ohlc(csv)
             try:
                 rep = validate_tick_continuity(df, sym)
                 quality[sym] = {"rows": rep["rows"], "ok": rep["ok"], "file": csv.name}
@@ -97,7 +114,7 @@ def _pandas_backtest(symbol, sma_period=20):
     csv = _csv_for(symbol)
     if not csv:
         return {"symbol": symbol, "error": "no local data"}
-    df = pd.read_csv(csv, index_col=0, parse_dates=True)
+    df = _read_ohlc(csv)
     close = df["Close"].astype(float).resample("1h").last().ffill().dropna()
     if len(close) < sma_period + 5:
         return {"symbol": symbol, "error": f"too few bars ({len(close)})"}
@@ -177,7 +194,7 @@ def run_portfolio():
     for sym in SYMBOLS:
         csv = _csv_for(sym)
         if csv:
-            s = pd.read_csv(csv, index_col=0, parse_dates=True)["Close"].astype(float)
+            s = _read_ohlc(csv)["Close"].astype(float)
             frames[sym.replace("=", "").replace("^", "")] = s.resample("1h").last().ffill().pct_change().dropna()
     if len(frames) < 3:
         raise RuntimeError(f"only {len(frames)} symbols with data — need >=3 for HRP")

@@ -1,0 +1,14 @@
+{
+  "last_date": "2026-11-03",
+  "fx_idx": 2,
+  "idx_idx": 2,
+  "synth_idx": 2,
+  "symbols": [
+    "EURUSD=X",
+    "GBPUSD=X",
+    "^GSPC",
+    "^DJI",
+    "GLD",
+    "SLV"
+  ]
+}

@@ -1,0 +1,879 @@
+{
+  "results": {
+    "single": {
+      "momentum_sma20": {
+        "EURUSD=X": {
+          "pnl": -0.0005026706274626758,
+          "sharpe": -0.47,
+          "max_drawdown": -0.006377731871369918,
+          "n_trades": 14,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": -0.0015515977723040697,
+          "sharpe": -1.24,
+          "max_drawdown": -0.006554871809381302,
+          "n_trades": 11,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.013550269417699767,
+          "sharpe": -15.15,
+          "max_drawdown": -0.013550269417699767,
+          "n_trades": 16,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": 0.0015723471983040138,
+          "sharpe": 1.26,
+          "max_drawdown": -0.006292202645716616,
+          "n_trades": 7,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.017075452853013928,
+          "sharpe": -7.65,
+          "max_drawdown": -0.020112559716345513,
+          "n_trades": 13,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.027841273846741732,
+          "sharpe": -5.22,
+          "max_drawdown": -0.03128481038757247,
+          "n_trades": 43,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": 0.01912968817227223,
+          "sharpe": 3.54,
+          "max_drawdown": -0.010649887362034316,
+          "n_trades": 29,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": -0.05486150789296518,
+          "sharpe": -6.65,
+          "max_drawdown": -0.05964743204306722,
+          "n_trades": 43,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": 0.010512151198039055,
+          "sharpe": 1.01,
+          "max_drawdown": -0.02213364701417575,
+          "n_trades": 25,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": 0.004315699258306438,
+          "sharpe": 0.29,
+          "max_drawdown": -0.05570255808311397,
+          "n_trades": 28,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": -0.042538932442589106,
+          "sharpe": -1.35,
+          "max_drawdown": -0.09897009039125926,
+          "n_trades": 42,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.026894687924924776,
+          "sharpe": -2.85,
+          "max_drawdown": -0.041558563150760786,
+          "n_trades": 41,
+          "bars": 673
+        }
+      },
+      "bollinger_zscore": {
+        "EURUSD=X": {
+          "pnl": -0.006199451503286713,
+          "sharpe": -15.06,
+          "max_drawdown": -0.006258488552267072,
+          "n_trades": 14,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": -0.010565079078385775,
+          "sharpe": -17.05,
+          "max_drawdown": -0.010900809687427904,
+          "n_trades": 17,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.002278522628992863,
+          "sharpe": -6.35,
+          "max_drawdown": -0.0031190098036381064,
+          "n_trades": 10,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": -0.011024698711020409,
+          "sharpe": -20.32,
+          "max_drawdown": -0.011024698711020409,
+          "n_trades": 18,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.005793221689853745,
+          "sharpe": -5.2,
+          "max_drawdown": -0.008055248448337937,
+          "n_trades": 8,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.037813290519116305,
+          "sharpe": -6.42,
+          "max_drawdown": -0.04290028624861897,
+          "n_trades": 44,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": -0.03222685634323763,
+          "sharpe": -5.49,
+          "max_drawdown": -0.03365281857608682,
+          "n_trades": 50,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": -0.02883102947456473,
+          "sharpe": -3.39,
+          "max_drawdown": -0.046934819428330554,
+          "n_trades": 48,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": -0.021231202477837496,
+          "sharpe": -2.78,
+          "max_drawdown": -0.026134696852341932,
+          "n_trades": 59,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": -0.036341857069018935,
+          "sharpe": -2.93,
+          "max_drawdown": -0.04680400929533479,
+          "n_trades": 53,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": 0.000528127749492846,
+          "sharpe": 0.12,
+          "max_drawdown": -0.048905041761511336,
+          "n_trades": 57,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.02120946974790694,
+          "sharpe": -3.32,
+          "max_drawdown": -0.024480616173000014,
+          "n_trades": 58,
+          "bars": 673
+        }
+      },
+      "rsi2_reversal": {
+        "EURUSD=X": {
+          "pnl": -0.009642331427801465,
+          "sharpe": -9.04,
+          "max_drawdown": -0.010486461102229394,
+          "n_trades": 8,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": -0.007237501145311631,
+          "sharpe": -11.36,
+          "max_drawdown": -0.008099396268422043,
+          "n_trades": 6,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.009760149615213765,
+          "sharpe": -10.38,
+          "max_drawdown": -0.010547502450524715,
+          "n_trades": 16,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": -0.008396791369187251,
+          "sharpe": -9.66,
+          "max_drawdown": -0.010709469055052878,
+          "n_trades": 12,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.0034208877256803882,
+          "sharpe": -1.34,
+          "max_drawdown": -0.015797559714448073,
+          "n_trades": 16,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.017082794139850255,
+          "sharpe": -3.05,
+          "max_drawdown": -0.02285596730309236,
+          "n_trades": 22,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": -0.013707896946370202,
+          "sharpe": -3.09,
+          "max_drawdown": -0.017780845961917313,
+          "n_trades": 22,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": -0.02470871318417467,
+          "sharpe": -2.63,
+          "max_drawdown": -0.04540083833904773,
+          "n_trades": 24,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": -0.005837656551282544,
+          "sharpe": -0.96,
+          "max_drawdown": -0.01575862803652628,
+          "n_trades": 24,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": -0.06326060091453434,
+          "sharpe": -5.34,
+          "max_drawdown": -0.08065351767645235,
+          "n_trades": 18,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": 0.031343472981349096,
+          "sharpe": 1.78,
+          "max_drawdown": -0.026997412467415716,
+          "n_trades": 20,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.012507619971499184,
+          "sharpe": -2.17,
+          "max_drawdown": -0.024080142452440167,
+          "n_trades": 22,
+          "bars": 673
+        }
+      },
+      "macd_trend": {
+        "EURUSD=X": {
+          "pnl": 4.041834258927679e-05,
+          "sharpe": 0.05,
+          "max_drawdown": -0.010443653976246026,
+          "n_trades": 7,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": -0.0008813331024928317,
+          "sharpe": -0.57,
+          "max_drawdown": -0.01093628195758356,
+          "n_trades": 10,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.028753646815148692,
+          "sharpe": -18.73,
+          "max_drawdown": -0.03224256872614584,
+          "n_trades": 17,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": 0.001462120584255544,
+          "sharpe": 0.82,
+          "max_drawdown": -0.011414338908837696,
+          "n_trades": 8,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": 0.003986942585968434,
+          "sharpe": 1.14,
+          "max_drawdown": -0.016621458187441207,
+          "n_trades": 12,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.03655433144090103,
+          "sharpe": -4.06,
+          "max_drawdown": -0.04431199529293717,
+          "n_trades": 36,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": -0.026107969331772063,
+          "sharpe": -2.85,
+          "max_drawdown": -0.03792149404833722,
+          "n_trades": 36,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": -0.07225556398402944,
+          "sharpe": -5.2,
+          "max_drawdown": -0.09000162586572069,
+          "n_trades": 34,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": 0.031151650160778255,
+          "sharpe": 1.79,
+          "max_drawdown": -0.0431361789387833,
+          "n_trades": 30,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": 0.027369968029895775,
+          "sharpe": 0.99,
+          "max_drawdown": -0.07826970572154701,
+          "n_trades": 29,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": -0.0864568959592934,
+          "sharpe": -2.19,
+          "max_drawdown": -0.20513414114887996,
+          "n_trades": 34,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.10149950871042157,
+          "sharpe": -8.58,
+          "max_drawdown": -0.10785031210690565,
+          "n_trades": 39,
+          "bars": 673
+        }
+      },
+      "donchian_breakout": {
+        "EURUSD=X": {
+          "pnl": -0.010326098929059446,
+          "sharpe": -11.92,
+          "max_drawdown": -0.011714572722401506,
+          "n_trades": 10,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": 0.0013958420520185921,
+          "sharpe": 1.44,
+          "max_drawdown": -0.006143567948856621,
+          "n_trades": 8,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.012720122987380678,
+          "sharpe": -10.49,
+          "max_drawdown": -0.014711994870043932,
+          "n_trades": 14,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": -0.0003680291912173672,
+          "sharpe": -0.22,
+          "max_drawdown": -0.008817658366734427,
+          "n_trades": 8,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.014995966446948894,
+          "sharpe": -4.94,
+          "max_drawdown": -0.02549373860822368,
+          "n_trades": 9,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.023763987367388717,
+          "sharpe": -3.28,
+          "max_drawdown": -0.026462192017360775,
+          "n_trades": 36,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": -0.010735208854308786,
+          "sharpe": -1.41,
+          "max_drawdown": -0.027155847020734925,
+          "n_trades": 35,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": -0.02456438182902343,
+          "sharpe": -2.08,
+          "max_drawdown": -0.03598810691449694,
+          "n_trades": 35,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": -0.04462873782174326,
+          "sharpe": -2.56,
+          "max_drawdown": -0.07216981814402845,
+          "n_trades": 23,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": -0.06667956767370031,
+          "sharpe": -4.15,
+          "max_drawdown": -0.11687124077186306,
+          "n_trades": 35,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": -0.15851560390340402,
+          "sharpe": -5.38,
+          "max_drawdown": -0.17141331516914093,
+          "n_trades": 32,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.04262153461455975,
+          "sharpe": -4.15,
+          "max_drawdown": -0.06103145603239324,
+          "n_trades": 30,
+          "bars": 673
+        }
+      },
+      "vol_target_momentum": {
+        "EURUSD=X": {
+          "pnl": -0.004598034943534168,
+          "sharpe": -1.4,
+          "max_drawdown": -0.024352426245569547,
+          "n_trades": 102,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": -0.03301815769594674,
+          "sharpe": -10.97,
+          "max_drawdown": -0.03301815769594674,
+          "n_trades": 102,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.038073725196063224,
+          "sharpe": -16.33,
+          "max_drawdown": -0.04288617338888279,
+          "n_trades": 100,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": -0.013839973569280462,
+          "sharpe": -4.72,
+          "max_drawdown": -0.018247228566957152,
+          "n_trades": 112,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.016572619391764465,
+          "sharpe": -8.26,
+          "max_drawdown": -0.022473582045288043,
+          "n_trades": 110,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.09000058393069499,
+          "sharpe": -7.06,
+          "max_drawdown": -0.10226361205251044,
+          "n_trades": 176,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": -0.036070044431471104,
+          "sharpe": -2.67,
+          "max_drawdown": -0.05687057623702696,
+          "n_trades": 178,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": -0.08095559574003786,
+          "sharpe": -6.71,
+          "max_drawdown": -0.08762351537294633,
+          "n_trades": 181,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": -0.028080604591424252,
+          "sharpe": -2.05,
+          "max_drawdown": -0.03548168611269786,
+          "n_trades": 179,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": 0.022942436370532837,
+          "sharpe": 1.36,
+          "max_drawdown": -0.054755209181960085,
+          "n_trades": 195,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": -0.03412606030529175,
+          "sharpe": -3.04,
+          "max_drawdown": -0.03982409719980251,
+          "n_trades": 192,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.053174782225892114,
+          "sharpe": -3.84,
+          "max_drawdown": -0.0726853161416694,
+          "n_trades": 181,
+          "bars": 673
+        }
+      },
+      "ema_crossover": {
+        "EURUSD=X": {
+          "pnl": -0.011022081919060844,
+          "sharpe": -7.07,
+          "max_drawdown": -0.015062885624991251,
+          "n_trades": 5,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": -0.008030683761541146,
+          "sharpe": -5.65,
+          "max_drawdown": -0.012844570444198622,
+          "n_trades": 6,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.026164368119659054,
+          "sharpe": -17.98,
+          "max_drawdown": -0.026875759662697174,
+          "n_trades": 13,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": -0.0031862642494404625,
+          "sharpe": -1.67,
+          "max_drawdown": -0.011341694315627038,
+          "n_trades": 6,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.0212689992933367,
+          "sharpe": -5.65,
+          "max_drawdown": -0.03220523877545112,
+          "n_trades": 8,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.014976275110776593,
+          "sharpe": -1.66,
+          "max_drawdown": -0.03162664430165929,
+          "n_trades": 16,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": -0.016609461284724958,
+          "sharpe": -1.8,
+          "max_drawdown": -0.03582053236874905,
+          "n_trades": 14,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": 0.0021434860676856626,
+          "sharpe": 0.22,
+          "max_drawdown": -0.037999617356749504,
+          "n_trades": 16,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": -0.06511613684582795,
+          "sharpe": -3.72,
+          "max_drawdown": -0.08579573942073737,
+          "n_trades": 14,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": -0.09347953319896274,
+          "sharpe": -2.96,
+          "max_drawdown": -0.14495229983464886,
+          "n_trades": 17,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": -0.06671707809179162,
+          "sharpe": -1.64,
+          "max_drawdown": -0.14429070988794968,
+          "n_trades": 12,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.004341380957099905,
+          "sharpe": -0.3,
+          "max_drawdown": -0.04565071960846734,
+          "n_trades": 13,
+          "bars": 673
+        }
+      },
+      "keltner_squeeze": {
+        "EURUSD=X": {
+          "pnl": -0.008142684621468388,
+          "sharpe": -6.7,
+          "max_drawdown": -0.01186432531974968,
+          "n_trades": 11,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": -0.003601798243734855,
+          "sharpe": -2.64,
+          "max_drawdown": -0.007904603334312754,
+          "n_trades": 10,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.015220554167123757,
+          "sharpe": -13.18,
+          "max_drawdown": -0.016969330841421826,
+          "n_trades": 17,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": -0.005024606972685586,
+          "sharpe": -3.14,
+          "max_drawdown": -0.009729606847797223,
+          "n_trades": 11,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.004468777188554984,
+          "sharpe": -1.35,
+          "max_drawdown": -0.015885701541490715,
+          "n_trades": 13,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": -0.005203838965292973,
+          "sharpe": -0.73,
+          "max_drawdown": -0.018772413894104,
+          "n_trades": 30,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": -0.011958364169475932,
+          "sharpe": -1.69,
+          "max_drawdown": -0.0341012404656581,
+          "n_trades": 31,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": 0.01020116265467852,
+          "sharpe": 1.02,
+          "max_drawdown": -0.020635338511543866,
+          "n_trades": 27,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": -0.0471872744646048,
+          "sharpe": -3.86,
+          "max_drawdown": -0.058946836050081775,
+          "n_trades": 32,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": -0.043084693575300204,
+          "sharpe": -1.44,
+          "max_drawdown": -0.12127040777317422,
+          "n_trades": 24,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": -0.1328538742745886,
+          "sharpe": -4.15,
+          "max_drawdown": -0.16742070022514688,
+          "n_trades": 31,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.023944471362292608,
+          "sharpe": -2.38,
+          "max_drawdown": -0.046803374589994284,
+          "n_trades": 26,
+          "bars": 673
+        }
+      },
+      "atr_trailing_stop": {
+        "EURUSD=X": {
+          "pnl": 0.0017113416780307755,
+          "sharpe": 1.65,
+          "max_drawdown": -0.004862131926712365,
+          "n_trades": 8,
+          "bars": 168
+        },
+        "GBPUSD=X": {
+          "pnl": 0.0017481619382835323,
+          "sharpe": 1.46,
+          "max_drawdown": -0.0072960197766550605,
+          "n_trades": 9,
+          "bars": 168
+        },
+        "USDJPY=X": {
+          "pnl": -0.010563287131094778,
+          "sharpe": -12.13,
+          "max_drawdown": -0.011894622367573549,
+          "n_trades": 12,
+          "bars": 168
+        },
+        "AUDUSD=X": {
+          "pnl": 0.005273730905306806,
+          "sharpe": 3.85,
+          "max_drawdown": -0.006227647666140035,
+          "n_trades": 7,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.010033899854030581,
+          "sharpe": -4.09,
+          "max_drawdown": -0.013676935469852824,
+          "n_trades": 9,
+          "bars": 163
+        },
+        "^GSPC": {
+          "pnl": 0.0038974574906878168,
+          "sharpe": 0.56,
+          "max_drawdown": -0.028380743383076612,
+          "n_trades": 23,
+          "bars": 673
+        },
+        "^DJI": {
+          "pnl": 0.02023672366208662,
+          "sharpe": 2.56,
+          "max_drawdown": -0.016851297931951614,
+          "n_trades": 19,
+          "bars": 673
+        },
+        "^IXIC": {
+          "pnl": -0.017686309026208047,
+          "sharpe": -1.51,
+          "max_drawdown": -0.04921065786899659,
+          "n_trades": 27,
+          "bars": 673
+        },
+        "GLD": {
+          "pnl": -0.061853208476634,
+          "sharpe": -3.86,
+          "max_drawdown": -0.07012302359604661,
+          "n_trades": 29,
+          "bars": 673
+        },
+        "SLV": {
+          "pnl": -0.05670987477959433,
+          "sharpe": -1.89,
+          "max_drawdown": -0.09309585205143933,
+          "n_trades": 26,
+          "bars": 673
+        },
+        "USO": {
+          "pnl": -0.04685603623603807,
+          "sharpe": -1.29,
+          "max_drawdown": -0.08737364765519118,
+          "n_trades": 34,
+          "bars": 673
+        },
+        "TLT": {
+          "pnl": -0.04771464537640757,
+          "sharpe": -4.58,
+          "max_drawdown": -0.055233001754330546,
+          "n_trades": 31,
+          "bars": 673
+        }
+      }
+    },
+    "pairs": {
+      "pairs_gld_slv": {
+        "pnl": -0.054400610954118744,
+        "sharpe": -8.56,
+        "max_drawdown": -0.055189956838274656,
+        "n_trades": 28,
+        "bars": 673
+      },
+      "pairs_tlt_ixic": {
+        "pnl": -0.06125465006781239,
+        "sharpe": -6.04,
+        "max_drawdown": -0.06807886296340648,
+        "n_trades": 34,
+        "bars": 673
+      }
+    },
+    "xsec": {
+      "xsec_momentum_top3bot3": {
+        "pnl": -0.10134555821131286,
+        "sharpe": -6.06,
+        "max_drawdown": -0.11442233000218549,
+        "n_trades": 0,
+        "bars": 673
+      }
+    }
+  },
+  "summary": {
+    "momentum_sma20": {
+      "n_symbols": 12,
+      "mean_sharpe": -2.87,
+      "best_sharpe": 3.54,
+      "total_pnl": -14.93
+    },
+    "bollinger_zscore": {
+      "n_symbols": 12,
+      "mean_sharpe": -7.35,
+      "best_sharpe": 0.12,
+      "total_pnl": -21.3
+    },
+    "rsi2_reversal": {
+      "n_symbols": 12,
+      "mean_sharpe": -4.77,
+      "best_sharpe": 1.78,
+      "total_pnl": -14.42
+    },
+    "macd_trend": {
+      "n_symbols": 12,
+      "mean_sharpe": -3.12,
+      "best_sharpe": 1.79,
+      "total_pnl": -28.85
+    },
+    "donchian_breakout": {
+      "n_symbols": 12,
+      "mean_sharpe": -4.1,
+      "best_sharpe": 1.44,
+      "total_pnl": -40.85
+    },
+    "vol_target_momentum": {
+      "n_symbols": 12,
+      "mean_sharpe": -5.47,
+      "best_sharpe": 1.36,
+      "total_pnl": -40.56
+    },
+    "ema_crossover": {
+      "n_symbols": 12,
+      "mean_sharpe": -4.16,
+      "best_sharpe": 0.22,
+      "total_pnl": -32.88
+    },
+    "keltner_squeeze": {
+      "n_symbols": 12,
+      "mean_sharpe": -3.35,
+      "best_sharpe": 1.02,
+      "total_pnl": -29.05
+    },
+    "atr_trailing_stop": {
+      "n_symbols": 12,
+      "mean_sharpe": -1.61,
+      "best_sharpe": 3.85,
+      "total_pnl": -21.85
+    },
+    "pairs_gld_slv": {
+      "n_symbols": 1,
+      "mean_sharpe": -8.56,
+      "best_sharpe": -8.56,
+      "total_pnl": -5.44
+    },
+    "pairs_tlt_ixic": {
+      "n_symbols": 1,
+      "mean_sharpe": -6.04,
+      "best_sharpe": -6.04,
+      "total_pnl": -6.13
+    },
+    "xsec_momentum_top3bot3": {
+      "n_symbols": 12,
+      "mean_sharpe": -6.06,
+      "best_sharpe": -6.06,
+      "total_pnl": -10.13
+    }
+  }
+}

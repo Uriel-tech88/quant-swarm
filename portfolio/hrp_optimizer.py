@@ -94,10 +94,20 @@ def compute_hrp_weights(
     corr = returns.corr()
     cov = returns.cov()
 
-    # Convert correlation to distance matrix
-    distance = np.sqrt(0.5 * (1 - corr))
+    # Harden the distance matrix for scipy's squareform validator:
+    # - zero-variance assets produce NaN correlations -> fill with 0 (uncorrelated)
+    # - force exact symmetry (NaN != NaN breaks the symmetry check even when
+    #   values are pairwise-computed symmetrically)
+    # - clip to the valid correlation-distance range and zero the diagonal
+    corr = corr.fillna(0.0)
+    corr = (corr + corr.T) / 2.0
+    np.fill_diagonal(corr.values, 1.0)
+    distance = np.sqrt(np.clip(0.5 * (1.0 - corr), 0.0, 2.0))
+    distance = (distance + distance.T) / 2.0
+    np.fill_diagonal(distance.values, 0.0)
+
     # Perform hierarchical clustering
-    linkage_matrix = linkage(squareform(distance), method=method, metric=metric)
+    linkage_matrix = linkage(squareform(distance.values), method=method, metric=metric)
 
     # Get quasi-diagonal sort
     sorted_indices = get_quasi_diag(linkage_matrix)

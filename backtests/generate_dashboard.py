@@ -323,6 +323,15 @@ def create_cyberpunk_dashboard():
     )
 
     fig.write_html(str(DASHBOARD_PATH), include_plotlyjs="cdn", full_html=True)
+    # Inject 60s auto-refresh so the served dashboard stays live without manual reloads
+    html = DASHBOARD_PATH.read_text(encoding="utf-8")
+    if 'http-equiv="refresh"' not in html:
+        html = html.replace(
+            "<head>",
+            '<head>\n    <meta http-equiv="refresh" content="60">',
+            1,
+        )
+        DASHBOARD_PATH.write_text(html, encoding="utf-8")
     print(f"✓ Dashboard saved to: {DASHBOARD_PATH}")
     return DASHBOARD_PATH
 

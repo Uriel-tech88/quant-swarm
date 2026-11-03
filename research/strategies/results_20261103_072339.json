@@ -1,0 +1,597 @@
+{
+  "results": {
+    "single": {
+      "momentum_sma20": {
+        "EURUSD=X": {
+          "pnl": -0.0020876728277814394,
+          "sharpe": -2.09,
+          "max_drawdown": -0.005984199390620448,
+          "n_trades": 12,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.004360397770868496,
+          "sharpe": -3.95,
+          "max_drawdown": -0.008433614957854552,
+          "n_trades": 16,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": 0.0015723471983040138,
+          "sharpe": 1.26,
+          "max_drawdown": -0.006292202645716616,
+          "n_trades": 7,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.017075452853013928,
+          "sharpe": -7.65,
+          "max_drawdown": -0.020112559716345513,
+          "n_trades": 13,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": 0.010738824429064042,
+          "sharpe": 1.55,
+          "max_drawdown": -0.03654620503402273,
+          "n_trades": 13,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "bollinger_zscore": {
+        "EURUSD=X": {
+          "pnl": -0.008652498344120185,
+          "sharpe": -13.39,
+          "max_drawdown": -0.009822279775026033,
+          "n_trades": 16,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.010463152074551396,
+          "sharpe": -15.82,
+          "max_drawdown": -0.011268840432531069,
+          "n_trades": 14,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": -0.011024698711020409,
+          "sharpe": -20.32,
+          "max_drawdown": -0.011024698711020409,
+          "n_trades": 18,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.005793221689853745,
+          "sharpe": -5.2,
+          "max_drawdown": -0.008055248448337937,
+          "n_trades": 8,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": 0.016250400894198602,
+          "sharpe": 3.76,
+          "max_drawdown": -0.01114979476377087,
+          "n_trades": 14,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "rsi2_reversal": {
+        "EURUSD=X": {
+          "pnl": -0.006202700153162932,
+          "sharpe": -9.47,
+          "max_drawdown": -0.006202700153162932,
+          "n_trades": 14,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.004158848268661974,
+          "sharpe": -9.95,
+          "max_drawdown": -0.004290498078794669,
+          "n_trades": 12,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": -0.008396791369187251,
+          "sharpe": -9.66,
+          "max_drawdown": -0.010709469055052878,
+          "n_trades": 12,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.0034208877256803882,
+          "sharpe": -1.34,
+          "max_drawdown": -0.015797559714448073,
+          "n_trades": 16,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": 0.018142974696679026,
+          "sharpe": 9.19,
+          "max_drawdown": -0.001198153094417731,
+          "n_trades": 6,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "macd_trend": {
+        "EURUSD=X": {
+          "pnl": 0.0005107469643101936,
+          "sharpe": 0.42,
+          "max_drawdown": -0.007004931019138683,
+          "n_trades": 9,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.0076984417313457065,
+          "sharpe": -5.98,
+          "max_drawdown": -0.010979380112359438,
+          "n_trades": 9,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": 0.001462120584255544,
+          "sharpe": 0.82,
+          "max_drawdown": -0.011414338908837696,
+          "n_trades": 8,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": 0.003986942585968434,
+          "sharpe": 1.14,
+          "max_drawdown": -0.016621458187441207,
+          "n_trades": 12,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": -0.012616436151941413,
+          "sharpe": -1.25,
+          "max_drawdown": -0.060751649226311044,
+          "n_trades": 8,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "donchian_breakout": {
+        "EURUSD=X": {
+          "pnl": -0.011069808889919264,
+          "sharpe": -9.41,
+          "max_drawdown": -0.012016862600796596,
+          "n_trades": 12,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.004178083015975442,
+          "sharpe": -4.2,
+          "max_drawdown": -0.005966753463048979,
+          "n_trades": 12,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": -0.0003680291912173672,
+          "sharpe": -0.22,
+          "max_drawdown": -0.008817658366734427,
+          "n_trades": 8,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.014995966446948894,
+          "sharpe": -4.94,
+          "max_drawdown": -0.02549373860822368,
+          "n_trades": 9,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": -0.06723709402762901,
+          "sharpe": -10.72,
+          "max_drawdown": -0.07435646225357306,
+          "n_trades": 10,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "vol_target_momentum": {
+        "EURUSD=X": {
+          "pnl": -0.017276820179177976,
+          "sharpe": -6.67,
+          "max_drawdown": -0.0232122916821057,
+          "n_trades": 98,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.03323094342438826,
+          "sharpe": -12.78,
+          "max_drawdown": -0.03323094342438826,
+          "n_trades": 97,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": -0.013839973569280462,
+          "sharpe": -4.72,
+          "max_drawdown": -0.018247228566957152,
+          "n_trades": 112,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.016572619391764465,
+          "sharpe": -8.26,
+          "max_drawdown": -0.022473582045288043,
+          "n_trades": 110,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": -0.012395997016730442,
+          "sharpe": -10.57,
+          "max_drawdown": -0.016635492870504143,
+          "n_trades": 43,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "ema_crossover": {
+        "EURUSD=X": {
+          "pnl": -0.013885298940242041,
+          "sharpe": -10.17,
+          "max_drawdown": -0.017012909537965526,
+          "n_trades": 9,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.003044657820427954,
+          "sharpe": -2.41,
+          "max_drawdown": -0.010152860269782238,
+          "n_trades": 7,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": -0.0031862642494404625,
+          "sharpe": -1.67,
+          "max_drawdown": -0.011341694315627038,
+          "n_trades": 6,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.0212689992933367,
+          "sharpe": -5.65,
+          "max_drawdown": -0.03220523877545112,
+          "n_trades": 8,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": -0.028096576525682537,
+          "sharpe": -2.96,
+          "max_drawdown": -0.07084789614777431,
+          "n_trades": 4,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "keltner_squeeze": {
+        "EURUSD=X": {
+          "pnl": -0.006546799254758318,
+          "sharpe": -5.37,
+          "max_drawdown": -0.011743151803253249,
+          "n_trades": 10,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": -0.008415655987985549,
+          "sharpe": -7.7,
+          "max_drawdown": -0.008523690442699072,
+          "n_trades": 14,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": -0.005024606972685586,
+          "sharpe": -3.14,
+          "max_drawdown": -0.009729606847797223,
+          "n_trades": 11,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.004468777188554984,
+          "sharpe": -1.35,
+          "max_drawdown": -0.015885701541490715,
+          "n_trades": 13,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": -0.006869777105618424,
+          "sharpe": -1.2,
+          "max_drawdown": -0.037397349256859114,
+          "n_trades": 8,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      },
+      "atr_trailing_stop": {
+        "EURUSD=X": {
+          "pnl": -0.00774301106283426,
+          "sharpe": -7.8,
+          "max_drawdown": -0.009015087428063673,
+          "n_trades": 16,
+          "bars": 167
+        },
+        "GBPUSD=X": {
+          "pnl": 0.0007014348970757478,
+          "sharpe": 0.69,
+          "max_drawdown": -0.004785086710640485,
+          "n_trades": 12,
+          "bars": 167
+        },
+        "USDJPY=X": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "AUDUSD=X": {
+          "pnl": 0.005273730905306806,
+          "sharpe": 3.85,
+          "max_drawdown": -0.006227647666140035,
+          "n_trades": 7,
+          "bars": 168
+        },
+        "GC=F": {
+          "pnl": -0.010033899854030581,
+          "sharpe": -4.09,
+          "max_drawdown": -0.013676935469852824,
+          "n_trades": 9,
+          "bars": 163
+        },
+        "^GSPC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^DJI": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "^IXIC": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "GLD": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "SLV": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        },
+        "USO": {
+          "pnl": 0.03646909499437467,
+          "sharpe": 4.34,
+          "max_drawdown": -0.034513223695317286,
+          "n_trades": 11,
+          "bars": 175
+        },
+        "TLT": {
+          "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+        }
+      }
+    },
+    "pairs": {
+      "pairs_gld_slv": {
+        "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+      },
+      "pairs_tlt_ixic": {
+        "error": "Only valid with DatetimeIndex, TimedeltaIndex or PeriodIndex, but got an instance of 'Index'"
+      }
+    },
+    "xsec": {
+      "xsec_momentum_top3bot3": {
+        "error": "need >= 7 symbols, have 5"
+      }
+    }
+  },
+  "summary": {
+    "momentum_sma20": {
+      "n_symbols": 5,
+      "mean_sharpe": -2.18,
+      "best_sharpe": 1.55,
+      "total_pnl": -1.12
+    },
+    "bollinger_zscore": {
+      "n_symbols": 5,
+      "mean_sharpe": -10.19,
+      "best_sharpe": 3.76,
+      "total_pnl": -1.97
+    },
+    "rsi2_reversal": {
+      "n_symbols": 5,
+      "mean_sharpe": -4.25,
+      "best_sharpe": 9.19,
+      "total_pnl": -0.4
+    },
+    "macd_trend": {
+      "n_symbols": 5,
+      "mean_sharpe": -0.97,
+      "best_sharpe": 1.14,
+      "total_pnl": -1.44
+    },
+    "donchian_breakout": {
+      "n_symbols": 5,
+      "mean_sharpe": -5.9,
+      "best_sharpe": -0.22,
+      "total_pnl": -9.78
+    },
+    "vol_target_momentum": {
+      "n_symbols": 5,
+      "mean_sharpe": -8.6,
+      "best_sharpe": -4.72,
+      "total_pnl": -9.33
+    },
+    "ema_crossover": {
+      "n_symbols": 5,
+      "mean_sharpe": -4.57,
+      "best_sharpe": -1.67,
+      "total_pnl": -6.95
+    },
+    "keltner_squeeze": {
+      "n_symbols": 5,
+      "mean_sharpe": -3.75,
+      "best_sharpe": -1.2,
+      "total_pnl": -3.13
+    },
+    "atr_trailing_stop": {
+      "n_symbols": 5,
+      "mean_sharpe": -0.6,
+      "best_sharpe": 4.34,
+      "total_pnl": 2.47
+    }
+  }
+}
